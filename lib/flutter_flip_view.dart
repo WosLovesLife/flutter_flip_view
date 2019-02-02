@@ -69,6 +69,30 @@ class FlipViewState extends State<FlipView> with SingleTickerProviderStateMixin 
 
   @override
   Widget build(BuildContext context) {
+    final front = widget.front;
+    final back = widget.back;
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (BuildContext context, Widget child) {
+        final direction = (_animation.status == AnimationStatus.forward ||
+                _animation.status == AnimationStatus.completed)
+            ? widget.goBackDirection
+            : widget.goFrontDirection;
+        return Transform(
+          transform: _buildTransform(direction),
+          alignment: Alignment.center,
+          child: IndexedStack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              front,
+              back,
+            ],
+            index: widget.animationController.value < 0.5 ? 0 : 1,
+          ),
+        );
+      },
+    );
+
     return AnimatedBuilder(
       animation: _animation,
       builder: (BuildContext context, Widget child) {
