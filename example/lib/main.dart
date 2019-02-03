@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flip_view_example/custom_layout_example.dart';
-import 'package:flutter_flip_view_example/simple_example.dart';
+import 'simple_example.dart';
+import 'custom_layout_example.dart';
 
 void main() => runApp(MaterialApp(home: MyApp()));
 
