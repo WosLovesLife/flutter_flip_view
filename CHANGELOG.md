@@ -1,3 +1,7 @@
-## 0.0.1
+## 1.0.1
 
-* TODO: Describe initial release.
+* Improve performance
+
+## 1.0.0
+
+* Provide a flip view for Flutter developers

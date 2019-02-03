@@ -1,8 +1,8 @@
 name: flutter_flip_view
 description: A new Flutter plugin.
-version: 0.0.1
-author:
-homepage:
+version: 1.0.1
+author: WosLovesLife<zhang599926@gmail.com>
+homepage: https://github.com/WosLovesLife/flutter_flip_view
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
