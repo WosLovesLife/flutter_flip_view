@@ -39,14 +39,22 @@ class FlipViewState extends State<FlipView> with SingleTickerProviderStateMixin 
       if (_lastStatus == status) return;
       _lastStatus = status;
 
-      if (status == AnimationStatus.completed || status == AnimationStatus.reverse) {
-        setState(() {
-          _animation = _calculateTweenSequence(widget.goFrontDirection);
-        });
-      } else if (status == AnimationStatus.dismissed || status == AnimationStatus.forward) {
-        setState(() {
-          _animation = _calculateTweenSequence(widget.goBackDirection);
-        });
+      if (this.mounted) {
+        if (status == AnimationStatus.completed ||
+            status == AnimationStatus.reverse) {
+          setState(
+            () {
+              _animation = _calculateTweenSequence(widget.goFrontDirection);
+            },
+          );
+        } else if (status == AnimationStatus.dismissed ||
+            status == AnimationStatus.forward) {
+          setState(
+            () {
+              _animation = _calculateTweenSequence(widget.goBackDirection);
+            },
+          );
+        }
       }
     });
   }
