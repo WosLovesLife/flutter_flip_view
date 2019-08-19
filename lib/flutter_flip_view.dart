@@ -39,22 +39,12 @@ class FlipViewState extends State<FlipView> with SingleTickerProviderStateMixin 
       if (_lastStatus == status) return;
       _lastStatus = status;
 
-      if (this.mounted) {
-        if (status == AnimationStatus.completed ||
-            status == AnimationStatus.reverse) {
-          setState(
-            () {
-              _animation = _calculateTweenSequence(widget.goFrontDirection);
-            },
-          );
-        } else if (status == AnimationStatus.dismissed ||
-            status == AnimationStatus.forward) {
-          setState(
-            () {
-              _animation = _calculateTweenSequence(widget.goBackDirection);
-            },
-          );
-        }
+      if (!this.mounted) return;
+
+      if (status == AnimationStatus.completed || status == AnimationStatus.reverse) {
+        _animation = _calculateTweenSequence(widget.goFrontDirection);
+      } else if (status == AnimationStatus.dismissed || status == AnimationStatus.forward) {
+        _animation = _calculateTweenSequence(widget.goBackDirection);
       }
     });
   }
@@ -97,36 +87,6 @@ class FlipViewState extends State<FlipView> with SingleTickerProviderStateMixin 
             ],
             index: widget.animationController.value < 0.5 ? 0 : 1,
           ),
-        );
-      },
-    );
-
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (BuildContext context, Widget child) {
-        final direction = (_animation.status == AnimationStatus.forward ||
-                _animation.status == AnimationStatus.completed)
-            ? widget.goBackDirection
-            : widget.goFrontDirection;
-        return Stack(
-          children: <Widget>[
-            Offstage(
-              offstage: widget.animationController.value > 0.5,
-              child: Transform(
-                transform: _buildTransform(direction),
-                alignment: Alignment.center,
-                child: widget.front,
-              ),
-            ),
-            Offstage(
-              offstage: widget.animationController.value <= 0.5,
-              child: Transform(
-                transform: _buildTransform(direction),
-                alignment: Alignment.center,
-                child: widget.back,
-              ),
-            ),
-          ],
         );
       },
     );
