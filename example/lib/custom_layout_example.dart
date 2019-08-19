@@ -71,6 +71,7 @@ class _CustomLayoutExampleState extends State<CustomLayoutExample>
       aspectRatio: 1.6,
       child: Card(
         elevation: 4,
+        clipBehavior: Clip.hardEdge,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Column(
           children: <Widget>[
@@ -137,6 +138,7 @@ class _CustomLayoutExampleState extends State<CustomLayoutExample>
     return Card(
       color: Colors.grey.shade50,
       elevation: 4,
+      clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         mainAxisSize: MainAxisSize.min,

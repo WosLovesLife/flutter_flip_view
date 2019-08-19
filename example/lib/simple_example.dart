@@ -56,6 +56,7 @@ class _SimpleExampleState extends State<SimpleExample> with SingleTickerProvider
       aspectRatio: 0.7,
       child: Card(
         elevation: 4,
+        clipBehavior: Clip.hardEdge,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Container(
           decoration: BoxDecoration(
