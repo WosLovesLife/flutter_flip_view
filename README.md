@@ -6,7 +6,7 @@ This is a flutter Widget base on pure Dart code that provides 3D flip card visua
 
 ![customlayout](screenshots/flipview_customlayout.gif)
 
-# Get start
+# Usage
 add package in your pubspec.yaml
 ```
 dependencies:
@@ -38,6 +38,9 @@ FlipView(
 
 You can get more usage case in [main.dart](example/lib/main.dart) and [custom_layout_example.dart](example/lib/custom_layout_example.dart)
 
+### Pay attention
+
+**If the widgets you are using within the `flip_view` are wrapped in a `Card` widget or a `Material` widget, you should set the `Card` (or `Material`) property `clipBehavior` to `Clip.hardEdge` or something other than Clip.none.**
 
 ## Getting Started
 
