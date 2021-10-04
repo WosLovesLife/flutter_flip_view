@@ -10,8 +10,8 @@ class CustomLayoutExample extends StatefulWidget {
 
 class _CustomLayoutExampleState extends State<CustomLayoutExample>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _curvedAnimation;
+  AnimationController? _animationController;
+  Animation<double>? _curvedAnimation;
 
   FocusNode _focusNode = FocusNode();
 
@@ -20,14 +20,14 @@ class _CustomLayoutExampleState extends State<CustomLayoutExample>
     super.initState();
 
     _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1000));
-    _curvedAnimation = CurvedAnimation(parent: _animationController, curve: Curves.easeInOut);
-    _animationController.addStatusListener((AnimationStatus status) {
-      if (!_focusNode.hasFocus && _animationController.isCompleted) {
+    _curvedAnimation = CurvedAnimation(parent: _animationController!, curve: Curves.easeInOut);
+    _animationController!.addStatusListener((AnimationStatus status) {
+      if (!_focusNode.hasFocus && _animationController!.isCompleted) {
         setState(() {
           FocusScope.of(context).requestFocus(_focusNode);
           print('complete  ${_focusNode.hasFocus}');
         });
-      }else if(_focusNode.hasFocus && !_animationController.isCompleted){
+      }else if(_focusNode.hasFocus && !_animationController!.isCompleted){
         _focusNode.unfocus();
       }
     });
@@ -35,16 +35,16 @@ class _CustomLayoutExampleState extends State<CustomLayoutExample>
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController!.dispose();
     super.dispose();
   }
 
   void _flip(bool reverse) {
-    if (_animationController.isAnimating) return;
+    if (_animationController!.isAnimating) return;
     if (reverse) {
-      _animationController.forward();
+      _animationController!.forward();
     } else {
-      _animationController.reverse();
+      _animationController!.reverse();
     }
   }
 
